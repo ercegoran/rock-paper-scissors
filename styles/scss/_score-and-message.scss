@@ -1,0 +1,135 @@
+/**
+ * ======= SCORE AND MESSAGE ======= 
+ */
+.score-board-wrapper
+{
+    grid-area: scoreBoardWrapper;
+    display: grid;
+    grid-template-areas:
+        ". playerBadge score computerBadge ."
+        ". playerBadge score computerBadge ."
+        ". playerBadge score computerBadge ."
+        ". playerBadge score computerBadge .";
+    height: 4.5em;
+    margin: auto;
+    width: 20em;
+    grid-template-columns: repeat(2, 0.5fr) 2fr repeat(2, 0.5fr);
+    font-size: 1.7em;
+
+    .score-board
+    {
+        grid-area: score;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.05em solid white;
+        border-radius: 0.3em;
+        color: white;
+        font-size: 2.25em;
+
+        #player-score 
+        { 
+            margin-right: 0.4em; 
+        }
+
+        #computer-score 
+        { 
+            margin-left: 0.4em; 
+        }
+    }
+
+    .badge
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.12em solid white;
+        border-radius: 0.4em;
+        text-align: center;
+        text-transform: uppercase;
+        background: get-color($colors, "solid", "peachRed");
+        color: white;
+        font-weight: bold;
+        word-wrap: break-word;
+
+        span 
+        { 
+            width: 50%; 
+        }
+    }
+    
+    #player-label 
+    { 
+        grid-area: playerBadge; 
+    }
+
+    #computer-label 
+    { 
+        grid-area: computerBadge; 
+    }
+
+    @include media-query(landscape) 
+    {
+        grid-template-areas:
+            ". . score . ."
+            "playerBadge playerBadge score computerBadge computerBadge"
+            "playerBadge playerBadge score computerBadge computerBadge"
+            ". . score . .";
+        font-size: 0.9em;
+    }
+}
+
+%message-board-template
+{
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+    font-size: 2.3em;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    z-index: 1;
+
+    @include media-query(landscape) 
+    { 
+        font-size: 1.4em; 
+    }
+}
+
+.score-message-wrapper
+{
+    @extend %message-board-template;
+    grid-area: scoreMessage;
+    
+    #help-message
+    {
+        font-size: 0.7em;
+        font-weight: normal;
+        margin: 0.4em 0 0.1em 0;
+    }
+}
+
+#popup-message
+{
+    @extend %message-board-template;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0) scale(0);
+    text-shadow: 0.07em 0 0.1em white,
+                 -0.07em 0 0.1em white,
+                 0 0.07em 0.1em white,
+                 0 -0.07em 0.1em white;
+    
+    #bonus-message
+    {
+        --bonus-text-shadow-color: white;
+        font-size: 0.4em;
+        text-shadow: 0.1em 0 0.2em var(--bonus-text-shadow-color),
+                     -0.1em 0 0.2em var(--bonus-text-shadow-color),
+                     0 0.1em 0.2em var(--bonus-text-shadow-color),
+                     0 -0.1em 0.2em var(--bonus-text-shadow-color);
+        color: white;
+        margin: 0.5em 0;
+    }
+}

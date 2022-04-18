@@ -1,0 +1,24 @@
+@mixin media-query($value)
+{
+    @if $value == "landscape" or $value == "portrait"
+    {
+        @media (orientation: $value)
+        {
+            @content;
+        }
+    }
+    @else
+    {
+        @media (min-width: $value)
+        {
+            @content;
+        }
+    }
+}
+
+@mixin flex-centered()
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

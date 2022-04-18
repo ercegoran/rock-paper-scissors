@@ -1,0 +1,316 @@
+/**
+ * ======= BUTTONS ======= 
+ */
+.buttons-and-timer
+{
+    --width: 8.8em;
+    @include flex-centered();
+    width: var(--width);
+    grid-area: buttons;
+    flex-flow: column;
+    margin: auto;
+    font-size: 1.8em;
+    font-weight: bold;
+
+    %game-commands-and-information
+    {
+        display: flex;
+        flex-wrap: wrap;
+        color: get-color($colors, "solid", "darkBrown");
+        text-shadow: 0 0.04em 0 get-color($colors, "transparent", "white05");
+
+        @include media-query(1700px)
+        {
+            text-shadow: 0 0.05em 0 get-color($colors, "transparent", "white05");
+        }
+    }
+
+    %command-and-info-buttons
+    {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        border: 0.05em solid get-color($colors, "solid", "mediumBrown");
+        border-radius: 2em;
+        padding: 0.5em;
+        background: -webkit-linear-gradient(bottom, get-color($colors, "gradient", "lightBrown"));
+        box-shadow: 0 0.1em 0 get-color($colors, "solid", "brown"), 
+                    0 0.15em 0.75em get-color($colors, "transparent", "black04"),
+                    inset 0 0.05em 0 white,
+                    inset 0 0 0.4em get-color($colors, "transparent", "white08");
+         
+        @include media-query(1500px)
+        {
+            @include media-query(landscape)
+            {                    
+                &:hover
+                {
+                    background: -webkit-linear-gradient(bottom, get-color($colors, "gradient", "mediumLightBrown"));
+                }
+            }
+        }
+
+        &:hover
+        {
+            cursor: pointer;    
+        }
+    }
+
+    %top-margin 
+    { 
+        margin-top: 1em; 
+    }
+
+    .game-commands 
+    { 
+        @extend %game-commands-and-information;
+        margin-bottom: 2em; 
+
+        .command-button 
+        { 
+            @extend %command-and-info-buttons;
+            width: 8.8em;
+            text-transform: uppercase;
+            
+            @include media-query(1200px)
+            {
+                width: 8.2em;
+            }
+        }
+
+        #start-pause
+        {
+            @include media-query(1200px)
+            {
+                margin-right: 0.8em;
+            }
+        }
+
+        #reset
+        {
+            @extend %top-margin;
+            
+            @include media-query(1200px)
+            {
+                margin: auto auto auto 0.8em;
+            }
+        }
+    }
+    
+    .information 
+    { 
+        @extend %game-commands-and-information;
+        margin-top: 2em;
+        
+        .info-button
+        {
+            @extend %command-and-info-buttons;
+            width: 3.8em;
+            text-transform: capitalize;
+        }
+
+        #game-help 
+        { 
+            margin-right: 0.6em; 
+        }
+
+        #about-game 
+        { 
+            margin-left: 0.6em; 
+        }
+
+        #show-score-table 
+        {
+            @extend %top-margin;
+            width: 8.8em;
+            order: 1;
+            
+            @include media-query(1200px)
+            {
+                order: 0;
+                width: 7.6em;
+                margin: auto 0.8em;
+            }
+        }
+    }
+
+    @mixin hr-parts($width, $side, $cut, $filter)
+    {
+        $inset: inset(0 0 0 0);
+        position: absolute;
+        content: "";
+        width: $width;
+        height: 0.15em;
+        border: 0;
+        background: -webkit-linear-gradient(left, get-color($colors, "gradient", "ultraLightGrayTransparent"));
+        
+        @if $side == "left"
+        {
+            $inset: inset(0 $cut 0 0);
+        }
+        @else
+        {
+            $inset: inset(0 0 0 $cut); 
+        }
+
+        filter: $filter;
+        clip-path: $inset;
+    }
+
+    hr
+    {
+        --cut: 69%;
+        --cut-addition: 0%;
+        --cut-total: calc(var(--cut) + var(--cut-addition));
+        --filter: none;
+
+        @include flex-centered();        
+        border-width: 0;
+        
+        @include media-query(1200px)
+        {
+            --cut: 59%;
+        }
+        
+        &::before
+        {
+            @include hr-parts(var(--width), "left", var(--cut-total), var(--filter));
+        }
+
+        &::after
+        {
+            @include hr-parts(var(--width), "right", var(--cut-total), var(--filter));
+        }
+    }
+
+    .timer
+    {
+        --timer-width: 0;
+        --timer-font-size: 1.4em;
+        --size-multiplier: 1;
+        --timer-bar-padding: calc(var(--size-multiplier) * 0.7em);
+        --counter-padding: calc(calc(0.3em / var(--size-multiplier)) - 0.1em);
+        --bar-size: 0.2em;
+
+        @include flex-centered();
+        color: get-color($colors, "solid", "darkBlue");
+        position: absolute;
+        border-radius: 50%;
+        
+        #counter
+        {
+            @include flex-centered();
+            width: var(--timer-width);   
+            height: var(--timer-width);  
+            padding: var(--counter-padding);
+            border-radius: 50%;
+            background: get-color($colors, "solid", "gray");
+            box-shadow: 0 0 0 0.07em white;
+        }
+
+        %time-bars
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: var(--timer-bar-padding);
+        }
+
+        %active-bars
+        {
+            border: var(--bar-size) solid green;
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .time-bar
+        {
+            @include flex-centered();
+            position: absolute;
+            padding: calc(var(--timer-bar-padding) + 0.25em);
+            clip-path: inset(0 0 0 50%);
+            z-index: 1;
+
+            #left-bar
+            {
+                @extend %time-bars;
+                @extend %active-bars;
+            }
+
+            #right-bar
+            {
+                @extend %time-bars;
+                @extend %active-bars;
+            }
+        }
+
+        #empty-bar
+        {
+            @extend %time-bars;
+            border: var(--bar-size) solid get-color($colors, "solid", "gray");
+            box-shadow: 0 0 0 0.07em white, inset 0 0.07em 0 white, inset 0 -0.07em 0 white, 
+                        inset 0.07em 0 0 white, inset -0.07em 0 0 white;
+            z-index: 0;
+        }
+    }
+    
+    @include media-query(1200px)
+    {
+        --width: 18em;
+        width: var(--width);  
+        font-size: 0.9em;
+    }
+
+    @include media-query(landscape)
+    {
+        font-size: 1em;
+    }
+}
+
+@mixin normal-click($value...)
+{
+    transform: translate(0, 0.1em) $value;
+    background: -webkit-linear-gradient(top, get-color($colors, "gradient", "lightBrown")) $value;
+    box-shadow: 0 -0.15em 0 get-color($colors, "solid", "ultraDarkBrown"), 
+                0 0.02em 0 get-color($colors, "transparent", "white03"),
+                0 -0.12em 0.1em get-color($colors, "transparent", "white08"),
+                inset 0 0.1em 0.25em get-color($colors, "transparent", "black07"),
+                inset 0 0 0.1em black $value;
+    cursor: pointer $value;
+}
+
+@mixin start-click-in-pause()
+{
+    transform: translate(0, 0.1em) !important;
+    background: -webkit-linear-gradient(top, get-color($colors, "gradient", "lightBrown")) !important;
+    box-shadow: 0 -0.15em 0 get-color($colors, "solid", "darkBrown"), 
+                0 -0.1em 0.7em white,
+                0 -0.12em 0.1em get-color($colors, "transparent", "white08"),
+                inset 0 0.1em 0.25em get-color($colors, "transparent", "black05"),
+                inset 0 0 0.1em black !important;
+}
+
+.button-clicked
+{
+    @include normal-click(!important);
+}
+
+.start-button-clicked-in-pause
+{
+    @include start-click-in-pause();
+}
+
+.start-button-pause-mode
+{
+    box-shadow: 0 0.1em 0 get-color($colors, "solid", "brown"), 
+                0 0 0.7em white,
+                inset 0 0.05em 0 white,
+                inset 0 0 0.4em get-color($colors, "transparent", "white08") !important;  
+}
+
+
+
+
+
+
+

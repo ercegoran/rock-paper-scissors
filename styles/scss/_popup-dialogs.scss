@@ -1,0 +1,245 @@
+/**
+ * ======= RESULT TABLE WINDOW ======= 
+ */
+#result-table-wrapper
+{
+    @include popup-dialog();
+    
+    grid-template-areas: 
+        "resultTable"
+        "divider"
+        "logo";
+
+    @include media-query(landscape)
+    {
+        grid-template-areas: 
+            "resultTable . . divider logo"; 
+    }
+
+    %table-properties
+    {
+        border: none;
+        border-radius: var(--border-radius);
+        border-spacing: 0.38em;
+    }
+
+    table
+    {
+        @extend %table-properties;
+        grid-area: resultTable;
+        align-self: center;
+        height: 14.7em;
+        margin: 1.4em;
+        color: white;
+        text-align: center;
+        text-transform: capitalize;
+        white-space: nowrap;
+        
+        thead
+        {
+            th
+            {
+                background: -webkit-linear-gradient(left, get-color($colors, "gradient", "darkMarineBlue"));
+            }
+        }
+
+        th, td
+        {
+            @extend %table-properties;
+            padding: 1em;
+            box-shadow: inset 0 0 0.7em 0.1em get-color($colors, "transparent", "black04"),
+                        0 0 0 0.1em white,
+                        0 0 0.25em 0.1em get-color($colors, "transparent", "black02");
+        }
+
+        th
+        {
+            background: -webkit-linear-gradient(left, get-color($colors, "gradient", "dirtyMarineBlue"));
+            text-shadow: 0.04em -0.04em 0 get-color($colors, "transparent", "black05"),
+                         0.07em -0.05em 0 get-color($colors, "transparent", "white03"),
+                         -0.05em 0.04em 0 get-color($colors, "transparent", "black05"),
+                         -0.08em 0.07em 0 get-color($colors, "transparent", "white03");
+        }
+
+        td
+        {
+            @extend %text-field;
+
+            &:last-child
+            {
+                background: -webkit-linear-gradient(left, get-color($colors, "gradient", "lightMarineBlue"));
+                box-shadow: inset 0 0 0.7em 0.1em get-color($colors, "transparent", "black03"),
+                            0 0 0 0.1em white,
+                            0 0 0.25em 0.1em get-color($colors, "transparent", "black02");
+            }
+            
+            box-shadow: inset 0 0 0.8em 0.07em get-color($colors, "transparent", "black03"),
+                        0 0 0 0.1em white,
+                        0 0 0.25em 0.1em get-color($colors, "transparent", "black02");
+        }
+
+        .table-title
+        {
+            text-transform: uppercase;
+            font-size: 1.2em;
+        }
+    }
+}
+
+#about-and-help-dialog-wrapper
+{
+    @include popup-dialog();
+
+    --header-height: 3.5em;
+
+    grid-template-areas:
+        "dialogTitle"
+        "list"
+        "divider"
+        "logo";
+
+    @include media-query(landscape)
+    {
+        grid-template-areas: 
+            "dialogTitle divider logo"
+            "list divider logo";
+    }
+
+    .dialog-title
+    {
+        @include flex-centered();
+        grid-area: dialogTitle;
+        position: relative;
+        margin: var(--margin);
+        margin-bottom: 0.7em;
+        border-radius: var(--border-radius);
+        background: -webkit-linear-gradient(left, get-color($colors, "gradient", "darkMarineBlue"));
+        color: white;
+        box-shadow: inset 0 0 0.9em 0.1em get-color($colors, "transparent", "black04"),
+                    0 0 0 0.1em white,
+                    0 0 0.35em 0.2em get-color($colors, "transparent", "black02");
+        font-weight: bold;
+        height: var(--header-height);
+
+        span
+        {
+            font-size: var(--header-font-size);
+            text-transform: uppercase;
+            text-shadow: 0.04em -0.05em 0 get-color($colors, "transparent", "black05"),
+                         0.07em -0.07em 0 get-color($colors, "transparent", "white03"),
+                         -0.04em 0.03em 0 get-color($colors, "transparent", "black05"),
+                         -0.04em 0.04em 0 get-color($colors, "transparent", "white03");
+        }
+    }
+
+    .list-frame
+    {
+        grid-area: list;
+        position: relative;
+        margin: var(--margin);
+        margin-top: auto;
+        // border-radius: var(--border-radius);
+        // box-shadow: inset 0 0.1em 0.9em 0.3em get-color($colors, "transparent", "black05"),
+        //             0 0 0 0.1em white,
+        //             0 0 0.35em 0.2em get-color($colors, "transparent", "black02");
+        width: 34em;
+        // pointer-events: none;
+
+        &::after
+        {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: inset 0 0.1em 0.7em 0.07em get-color($colors, "transparent", "black05"),
+                        0 0 0 0.1em white,
+                        0 0 0.35em 0.2em get-color($colors, "transparent", "black02");
+            pointer-events: none;
+        }
+        
+        .list
+        {
+            position: inherit;
+            border-radius: var(--border-radius);
+            height: calc(var(--header-height) * 3);
+            overflow-y: auto;
+            
+            .list-item
+            {
+                --space-arround: 1.4em;
+                position: inherit;
+                
+                &:last-child
+                {
+                    margin-bottom: 0;
+                }
+
+                .item-header
+                {
+                    position: inherit;
+                    background: -webkit-linear-gradient(left, get-color($colors, "gradient", "dirtyMarineBlue"));
+                    color: white;
+                    box-shadow: inset 0 0.1em 0.1em 0.02em get-color($colors, "transparent", "white03"),
+                                inset 0 -0.07em 0.3em 0.07em get-color($colors, "transparent", "black02");
+                    font-weight: bold;
+                    height: var(--header-height);
+                    
+                    &:hover
+                    {
+                        cursor: pointer;
+                    }
+                    
+                    span
+                    {
+                        position: inherit;
+                        display: flex;
+                        justify-content: space-between;
+                        margin: auto var(--space-arround);
+                        transform: translateY(-50%);
+                        top: 50%;
+                        text-shadow: 0.04em -0.07em 0 get-color($colors, "transparent", "black05"),
+                                     0.05em -0.09em 0 get-color($colors, "transparent", "white03"),
+                                     -0.04em 0.03em 0 get-color($colors, "transparent", "black05"),
+                                     -0.04em 0.04em 0 get-color($colors, "transparent", "white03");
+                        
+                        &::after    
+                        {
+                            content: "\276E";
+                            transform: rotate(-90deg);
+                            text-shadow: 0.07em 0.04em 0 get-color($colors, "transparent", "black05"),
+                                         0.09em 0.04em 0 get-color($colors, "transparent", "white03"),
+                                         -0.05em -0.05em 0 get-color($colors, "transparent", "black05"),
+                                         -0.07em -0.05em 0 get-color($colors, "transparent", "white03");
+                        }
+                    }
+                }
+
+                .item-content
+                {
+                    @extend %text-field;
+                    @include flex-centered();
+                    flex-direction: column;
+                    box-shadow: inset 0 0.2em 0.7em 0.1em get-color($colors, "transparent", "black02");
+                    overflow: hidden;
+                    // max-height: 0;
+
+                    &-text
+                    {
+                        padding: var(--space-arround);
+                    }
+
+                    hr
+                    {
+                        height: 0.1em;
+                        width: 90%;
+                        border: 0;
+                        background: -webkit-linear-gradient(left, get-color($colors, "gradient", "darkMarineBlueTransparent"));
+                    }
+                }
+            }
+        }
+    }
+}

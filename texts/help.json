@@ -1,0 +1,191 @@
+[
+    {
+        "sectionsSize": 2,
+        "listSize": 0,
+        "contentLevel": 1,
+        "title": "RULES",
+        "content": 
+        [
+            {
+                "sectionsSize": 0,
+                "listSize": 1,
+                "contentLevel": 2,
+                "text": "Basic rule:",
+                "list":
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "You play a game against a computer. Rules are pretty simple. You choose ROCK, PAPER or SCISSORS. ROCK beats SCISSORS, SCISSORS beat PAPER and PAPER beats ROCK. Same choice, makes it even."
+                    }
+                ]
+            },
+            {
+                "sectionsSize": 0,
+                "listSize": 3,
+                "contentLevel": 2,
+                "text": "Game structure and scoring:",
+                "list":
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "Game is played in sets, pretty much like volleyball, tennis, table tennis, etc. Each set lasts for 30 seconds. If you win a move, you get a point, if computer wins a move, computer gets a point. When the time is up, the one with most points wins a set."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "Score can't be draw at the end of a set. If score is equal when timer reaches 0, then the first one who wins a move after that, wins a set."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "First to win 3 sets, wins the match."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "sectionsSize": 3,
+        "listSize": 0,
+        "contentLevel": 1,
+        "title": "GAMEPLAY",
+        "content": 
+        [
+            {
+                "sectionsSize": 0,
+                "listSize": 1,
+                "contentLevel": 2,
+                "text": "Initial screen:",
+                "list": 
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "When the game initially loads, playing elements such as ROCK, PAPER and SCISSORS as well as the RESET button are not active. You activate them by starting the game."
+                    }
+                ]
+            },
+            {
+                "sectionsSize": 0,
+                "listSize": 1,
+                "contentLevel": 2,
+                "text": "Playing:",
+                "list":
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "When you play the move by choosing one of the above mentioned playing elements, your label is displayed on top of the element you've picked, and computer label is displayed on top of the element computer randomly have picked. If you and the computer picked the same element, than both of labels are displayed on top of that element."
+                    }
+                ]
+            },
+            {
+                "sectionsSize": 0,
+                "listSize": 2,
+                "contentLevel": 2,
+                "text": "Pausing:",
+                "list":
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "When you leave the game tab out of sight like e.g. switch to another tab or another window, everything is left \"frozen\", same as when the game is paused, until you return to it."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "Game can be paused and resumed at any time during running of the set, unless RESULT TABLE, HELP dialog or ABOUT dialog are active, since it's already paused in that case."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "sectionsSize": 1,
+        "listSize": 0,
+        "contentLevel": 1,
+        "title": "PLAYING ELEMENTS AND THEIR SHORTCUTS",
+        "content":
+        [
+            {
+                "sectionsSize": 0,
+                "listSize": 3,
+                "contentLevel": 2,
+                "text": "You play by either clicking on the image which corresponds to a choice you want to make, or by pressing acorresponding key on your keyboard:",
+                "list":
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "R for ROCK."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "P for PAPER."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "S for SCISSORS."
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "sectionsSize": 1,
+        "listSize": 0,
+        "contentLevel": 1,
+        "title": "BUTTONS AND THEIR SHORTCUTS",
+        "content":
+        [
+            {
+                "sectionsSize": 0,
+                "listSize": 4,
+                "contentLevel": 2,
+                "text": "RESULT TABLE and HELP and ABOUT popup dialogs can be opened by clicking their respective buttons, or by pressing their corresponding keyboard keys. Each of those dialogs is closed by clicking the X in its upper right corner. Their keyboard shortcuts are:",
+                "list":
+                [
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "T for opening and closing RESULT TABLE."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "H for opening and closing HELP dialog."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 1,
+                        "contentLevel": 3,
+                        "text": "A for opening and closing ABOUT dialog."
+                    },
+                    {
+                        "sectionsSize": 0,
+                        "listSize": 0,
+                        "contentLevel": 3,
+                        "text": "ESCAPE for closing any of them."
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,40 @@
+RESPONSIVE DESIGN
+
+Game is completely responsive in terms of design and functionality. It can be played on any screen size and
+any type of device such as PC, laptop, tablet and mobile phone.
+
+
+INTERACTIVITY
+
+You can interact with playing elements and buttons if they're not grayed out and not transparent. If elements
+are grayed out and slightly transparent it means that they are not active and that you can't interract with
+them.
+
+
+INTERFACE
+
+Scoreboard:
+- Set score is displayed in the score board in the upper part of your screen.
+
+Playing elements:
+- ROCK, PAPER and SCISSORS images in circles.
+
+Buttons:
+- START for starting, pausing and resuming set and a game.
+- RESET for a complete game restart.
+- HELP for activating HELP popup dialog.
+- RESULT TABLE for displaying RESULT TABLE.
+- ABOUT for activating ABOUT popup dialog.
+
+Set timer:
+- When game itself and each set starts, the little circle below START and RESET buttons turns into a timer with remaining time presented by a number and a green circular time bar.
+- When there is only 10 seconds remaining, time bar changes from green to red, timer starts to glow and to zoom in and out continuosly before reaching 0 to signalize that the end of set is near.
+
+Popup elements:
+- All popup elements are hidden. Only single popup element can be activated at a time.
+- There are 3 popup elements in this game:
+  - HELP for activating a popup dialog which contains explanation about game rules, scoring, game elements and buttons with its rescpective keyboard shortcuts.
+  - RESULT TABLE for activating a table with current set score, scores in previous sets, as well as the number of sets you and computer won. Result is updated during an entire course of the game.
+  - ABOUT for activating this popup dialog which contains information you are currently reading.
+- Opening each dialog deactivates all the other elements on the page, such as ROCK, PAPER and SCISSORS game elements, as well as all the buttons and it also pauses the game if set is still running, as mentioned above. Closing them reactivates those elements which were active prior to their opening,and it also resumes the game if set was running.
+- Each dialog can be dragged across the screen by clicking on it and holding a button while moving a mouse, or touching it and holding your finger on the screen while you moving it, if you are on a touch device. Dragging stops when you release the mouse button, or when you lift a finger from the screen if you are on touch device. There is no danger of dragging them off the screen.

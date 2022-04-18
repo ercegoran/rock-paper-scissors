@@ -1,0 +1,61 @@
+$colors:
+(
+    "solid": 
+    (
+        "darkBlue": #292C35,
+        "darkBrown": #262626,
+        "mediumBrown": #333333,
+        "lightGray": #e6e6e6,
+        "gray": #c8c8c8,
+        "ultraLightBlue": #e7effd,
+        "dirtyLightBlue": #6580a3,
+        "brown": #595959,
+        "ultraDarkBrown": #1b1b1b,
+        "dirtyBlue": #607b9e,
+        "peachRed": #E2584D
+    ),
+
+    "transparent":
+    (
+        "black04": rgba(black, 0.4),
+        "white08": rgba(white, 0.8),
+        "white02": rgba(white, 0.2),
+        "white03": rgba(white, 0.3),
+        "black07": rgba(black, 0.7),
+        "white07": rgba(white, 0.7),
+        "black02": rgba(black, 0.2),
+        "black03": rgba(black, 0.3),
+        "black05": rgba(black, 0.5),
+        "white05": rgba(white, 0.5),
+        "black06": rgba(black, 0.6)
+    ),
+
+    "gradient":
+    (
+        "darkBlueTransparent": (rgba(#292c35, 0) 7%, rgba(#292c35, 1), rgba(#292c35, 0) 93%),
+        "darkMarineBlueTransparent": (rgba(#577294, 0), rgba(#577294, 1), rgba(#577294, 0)),
+        "ultraDarkBlueTransparent": (rgba(#292c35, 1) 0%, rgba(#292c35, 0.4) 50%, rgba(#292c35, 1) 100%),
+        "lightGray": (#e6e6e6, white),
+        "ultraLightGray": (#e6e6e6 0%,  #fcfcfc 50%, white 100%),
+        "red": (#FBC7C7 7%, red 50%, #a52404 120%), 
+        "lightBrown": (#777777, white),
+        "mediumLightBrown": (#bbbbbb, white),
+        "softLightBrown": (#c7c7c7, white),
+        "ultraLightGrayTransparent": (rgba(white, 0), white, rgba(white, 0)),
+        "ultraLightBrown": (#e7e7e7 20%, #f7f7f7 50%, white 100%),
+        "darkMarineBlue": (#506783 0%, #4e7688 50%, #506783 100%),
+        "dirtyMarineBlue": (#6580a3 0%, #6297af 50%, #6580a3 100%),
+        "lightMarineBlue": (#a7cbe0 0%, #c3e0f1 50%, #a7cbe0 100%),
+        "ultraLightMarineBlue": (#deedf5 0%, #d2e8f3 50%, #deedf5 100%)
+    )
+);
+
+@function get-color($map, $keys...)
+{
+    @each $key in $keys 
+    {
+        $map: map-get($map, $key);    
+    }
+
+    @return $map;
+}

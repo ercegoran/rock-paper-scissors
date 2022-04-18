@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+	<meta name="description" content="The greatest rock paper scissors game" />
+	<meta name="keywords" content="rock, paper, scissors, game, win, lose, draw" />
+	<meta charset="utf-8" />
+	<title>Rock Paper Scissors Game</title>
+	<link rel="icon" type="image/gif" href="./images/logo.png" />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Asap:400,500,700" />
+	<link rel="stylesheet" type="text/css" href="./styles/css/index.css" />
+</head>
+
+<body>
+	<header id="header">
+		<h1>Rock Paper Scissors</h1>
+	</header>
+
+	<div id="main" class="content-wrapper">
+		<!-- Wrapper for scoreboard and name labels. -->
+		<div id="score-panel" class="score-board-wrapper">
+			<div id="player-label" class="badge"><span>you</span></div>
+			<div class="score-board">
+				<span id="player-score">0</span>:<span id="computer-score">0</span>
+			</div>
+			<div id="computer-label" class="badge"><span>com</span></div>
+		</div>
+
+		<!-- Wrapper for a score display message. -->
+		<div id="score-description" class="score-message-wrapper">
+			<p id="score-message">Play a game against a computer.</p>
+			<p id="help-message">( Click START to begin the 1st set. )</p>
+		</div>
+
+		<!-- Wrapper for choice options. -->
+		<div id="gameplay-elements" class="choices">
+			<div id="rock" class="choice non-interactive">
+				<img src="images/rock.png" alt="" />
+			</div>
+			<div id="paper" class="choice non-interactive">
+				<img src="images/paper.png" alt="" />
+			</div>
+			<div id="scissors" class="choice non-interactive">
+				<img src="images/scissors.png" alt="" />
+			</div>
+		</div>
+
+		<!-- Wrapper for buttons. -->
+		<div class="buttons-and-timer">
+			<div class="game-commands">
+				<div id="start-pause" class="command-button">start</div>
+				<div id="reset" class="command-button non-interactive">reset</div>
+			</div>
+			<hr>
+			<div id="time-counter" class="timer">
+				<div id="counter"></div>
+				<div class="time-bar">
+					<div id="left-bar"></div>
+					<div id="right-bar"></div>
+				</div>
+				<div id="empty-bar"></div>
+			</div>
+			<div class="information">
+				<div id="game-help" class="info-button" onclick="">help</div>
+				<div id="show-score-table" class="info-button">result table</div>
+				<div id="about-game" class="info-button" onclick="">about</div>
+			</div>
+		</div>
+
+		<div id="about-and-help-dialog-wrapper">
+			<div class="dialog-title"><span>Glavni Naslov</span></div>
+			<div class="list-frame">
+				<div class="list">
+					<div class="list-item">
+						<div class="item-header"><span>Item 1</span></div>
+						<div class="item-content">
+							<div class="item-content-text">
+								Who is he? Who is he? He rides a bright cloud and goes FLYING
+								Till the end of the skies
+							</div>
+							<hr>
+							<div class="item-content-text">
+								Who is he? Who is he? He rides a bright cloud and goes FLYING
+								Till the end of the skies
+							</div>
+						</div>
+					</div>
+					<div class="list-item">
+						<div class="item-header"><span>Item 1</span></div>
+						<div class="item-content">
+							<div class="item-content-text">
+								With clear eyes and trained techniques To defend the green
+								planet he goes FIGHTING Fire blazes in his heart
+							</div>
+							<hr>
+							<div class="item-content-text">
+								With clear eyes and trained techniques To defend the green
+								planet he goes FIGHTING Fire blazes in his heart
+							</div>
+						</div>
+					</div>
+					<div class="list-item">
+						<div class="item-header"><span>Item 1</span></div>
+						<div class="item-content">
+							<div class="item-content-text">
+								Wonder Boy... Why? Wonder Boy... I can't stand how His eyes show
+								such cool even when in trouble
+							</div>
+							<hr>
+							<div class="item-content-text">
+								Wonder Boy... Why? Wonder Boy... I can't stand how His eyes show
+								such cool even when in trouble
+							</div>
+						</div>
+					</div>
+					<div class="list-item">
+						<div class="item-header"><span>Item 1</span></div>
+						<div class="item-content">
+							<div class="item-content-text">
+								Son Gokou Continue painting dreams Son Gokou You are surely a
+								hero No matter how strong the opponent who challenges him Power
+								trembles in him
+							</div>
+							<hr>
+							<div class="item-content-text">
+								Son Gokou Continue painting dreams Son Gokou You are surely a
+								hero No matter how strong the opponent who challenges him Power
+								trembles in him
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="logo">
+				<img src="./images/logo.png" alt="logo" />
+			</div>
+		</div>
+	</div>
+
+	<script type="module" src="./scripts/index.js"></script>
+</body>
+
+</html>
