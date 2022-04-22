@@ -1,5 +1,5 @@
 /**
- * ======= RESULT TABLE WINDOW ======= 
+ * ======= RESULT TABLE ======= 
  */
 #result-table-wrapper
 {
@@ -86,7 +86,10 @@
     }
 }
 
-#about-and-help-dialog-wrapper
+/**
+ * ======= ABOUT AND HELP POPUP DIALOGS =======
+ */
+@mixin about-and-help-dialog-wrapper()
 {
     @include popup-dialog();
 
@@ -242,4 +245,9 @@
             }
         }
     }
+}
+
+#about-dialog-wrapper, #help-dialog-wrapper
+{
+    @include about-and-help-dialog-wrapper();
 }
