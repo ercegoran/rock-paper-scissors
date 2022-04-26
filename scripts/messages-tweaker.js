@@ -3,6 +3,7 @@ import
     contentElement, playerScoreElement, computerScoreElement,
     scoreMessageElement, scoreMessageHelpElement
 } from "./html-elements.js";
+import { gameStats } from "./index.js";
 import toggleInteractivity from "./interactivity_tweaker.js";
 
 function updateStatusMessage(gameStats, status, options)

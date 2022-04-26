@@ -1,3 +1,5 @@
+import { gameStats } from "./index.js";
+
 export default function dragPopupDialog(popupDialog)
 {
     let x, y;

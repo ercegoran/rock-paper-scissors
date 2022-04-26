@@ -3,6 +3,7 @@ import
     startButtonElement, counterWrapperElement, counterElement, leftBarElement,
     rightBarElement, timeBarElement, buttonSectionHrElement
 } from "./html-elements.js";
+import { gameStats } from "./index.js";
 import { resultTableSetAndStyleUpdate } from "./popup-dialog.js";
 import { setAndGamePopupMessage } from "./messages-tweaker.js";
 

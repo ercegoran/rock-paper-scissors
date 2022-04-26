@@ -1,24 +1,38 @@
+import { gameStats } from "./index.js";
 import dragPopupDialog from "./popup-dialog-dragging.js";
 import togglePopupDialog from "./toggle-popup-dialog.js";
 
-function getPopupDialog(gameStats, options, dialogID, dialogName)
+function getPopupDialog(gameStats, dialogType, options)
 {
-    const popupDialog = document.createElement("div");
-    const mainElement = dialogName === "table" ? generateTable() : generateHelpOrAboutDialog(dialogName);
-    const divider = document.createElement("hr");
-    const logo = logoDiv();
-    
-    popupDialog.id = dialogID;
-    
-    popupDialog.appendChild(mainElement);
-    popupDialog.appendChild(divider);
-    popupDialog.appendChild(logo);
-    popupDialog.appendChild(closingXElement);
+    let clicks = dialogType.clickAmmount;
+    let dialogID = dialogType.ID;
 
-    togglePopupDialog(popupDialog, gameStats, options);
-    dragPopupDialog(popupDialog);
+    if(clicks === 0)
+    {
+        let dialogName = dialogType.name;
+        const popupDialog = document.createElement("div");
+        const mainElement = dialogName === "table" ? generateTable() : generateHelpOrAboutDialog(dialogName);
+        const divider = document.createElement("hr");
+        const logo = logoDiv();
+        const closingX = closingXElement();
     
-    return popupDialog;
+        popupDialog.id = dialogID;
+    
+        popupDialog.appendChild(mainElement);
+        popupDialog.appendChild(divider);
+        popupDialog.appendChild(logo);
+        popupDialog.appendChild(closingX);
+
+        togglePopupDialog(popupDialog, gameStats, options, closingX);
+        dragPopupDialog(popupDialog);
+    
+        return popupDialog;
+    }
+    else
+    {
+        const popupDialog = document.getElementById(dialogID);
+        return popupDialog;    
+    }
 };
 
 const generateTable = () =>
@@ -109,12 +123,20 @@ const generateTable = () =>
     return table;
 }
 
-async function generateHelpOrAboutDialog(dialogName)
+function generateHelpOrAboutDialog(dialogName)
 {
-    const content = await fetch(`../texts/${dialogName}.json`);
-    const textContent = await content.json();
+    // const jsonContent = getJsonContent(dialogName);
 
-    
+    // jsonContent.then((content) =>
+    // {
+        const dialogTitle = document.createElement("div");
+        dialogTitle.classList.add("dialog-title");
+
+        const listFrame = document.createElement("div");
+        listFrame.classList.add("list-frame");
+    // });
+
+    return dialogTitle;
 }
 
 const logoDiv = () =>
@@ -135,13 +157,13 @@ function resultTableSetAndStyleUpdate(gameStats, setCount)
     document.getElementById("computer-set-" + setCount).innerText = gameStats["set" + setCount].computer;
 }
 
-const closingXElement = (() =>
+const closingXElement = () =>
 {
     const closingX = document.createElement("div");
     closingX.id = "closing-x-symbol";
     closingX.classList.add("non-interactive");
 
     return closingX;
-})();
+};
 
-export { getPopupDialog, resultTableSetAndStyleUpdate, closingXElement };
+export { getPopupDialog, resultTableSetAndStyleUpdate};

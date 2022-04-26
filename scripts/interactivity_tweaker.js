@@ -1,3 +1,5 @@
+import { gameStats } from "./index.js";
+
 export default function toggleInteractivity(action, gameStats, elementGroup, popupObject, countOpenClose)
 {
     const popupObjectStyle = window.getComputedStyle(popupObject);

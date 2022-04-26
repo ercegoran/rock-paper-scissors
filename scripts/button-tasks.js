@@ -4,6 +4,7 @@ import
     startButtonElement, resetButtonElement, scoreTableButtonElement,
     helpButtonElement, aboutButtonElement, choicePanelElement
 } from "./html-elements.js";
+import { gameStats } from "./index.js";
 import { startTimeCounter, stopTimeCounter } from "./time-counter.js";
 import { getPopupDialog, resultTableSetAndStyleUpdate } from "./popup-dialog.js";
 import { updateStatusMessage } from "./messages-tweaker.js";
@@ -96,6 +97,8 @@ const buttonClicked = (e, gameStats, options, buttonType) =>
         }, clickTimeout);
 
         dialogType.clickAmmount++;
+
+        console.log(dialogType.name + " " + dialogType.clickAmmount);
     }
 }
 
@@ -196,21 +199,15 @@ const choicePanelInteractivityChanger = (startButtonText, nonInteractive) =>
 
 const getPopupDialogSection = (gameStats, options, dialogType) =>
 {
-    let clicks = dialogType.clickAmmount;
-    let dialogName = dialogType.name;
-    let dialogID = dialogType.ID;
-
-    const popupDialogSection = clicks === 0 ?
-        contentElement.appendChild(getPopupDialog(gameStats, options, dialogID, dialogName)) :
-        document.getElementById(dialogID);
+    const popupDialogSection = contentElement.appendChild(getPopupDialog(gameStats, dialogType, options));
     
-    if (dialogName === "table")
+    if (dialogType.name === "table")
     {
         let setCount = gameStats.setCounter;
 
         if(setCount > 0)
         {
-            if(clicks === 0)
+            if(dialogType.clickAmmount === 0)
             {
                 for(let i = 1; i < setCount; i++)
                 {

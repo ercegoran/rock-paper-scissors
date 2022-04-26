@@ -1,3 +1,5 @@
+import { gameStats } from "./index.js";
+
 function mouseAndTouchAction(element, gameStats, options, action, sourceType)
 {
     const triggerEvents = ["mousedown", "touchstart"];

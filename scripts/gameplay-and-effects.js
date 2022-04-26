@@ -3,6 +3,7 @@ import
     playerScoreElement, computerScoreElement, scoreMessageElement, choiceElements,
     rockElement, paperElement, scissorsElement
 } from "./html-elements.js";
+import { gameStats } from "./index.js";
 import { timerReachedZero } from "./time-counter.js";
 import { mouseAndTouchAction } from "./mouse-and-keyboard-handlers.js";
 

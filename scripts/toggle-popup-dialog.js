@@ -1,11 +1,11 @@
-import { bodyElement, contentElement} from "./html-elements.js";
+import { gameStats } from "./index.js";
+import { bodyElement, contentElement } from "./html-elements.js";
 import toggleInteractivity from "./interactivity_tweaker.js";
 import { startTimeCounter } from "./time-counter.js";
 import { updateStatusMessage } from "./messages-tweaker.js";
 import { mouseAndTouchAction } from "./mouse-and-keyboard-handlers.js";
-import { closingXElement } from "./popup-dialog.js";
 
-export default function togglePopupDialog(popupDialog, gameStats, options)
+export default function togglePopupDialog(popupDialog, gameStats, options, closingXElement)
 {
     const NON_INTERACTIVE = "non-interactive";
     let sourceType = options.clickSource.popup;
