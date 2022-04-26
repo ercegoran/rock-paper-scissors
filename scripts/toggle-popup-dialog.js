@@ -1,16 +1,16 @@
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 import { bodyElement, contentElement } from "./html-elements.js";
 import toggleInteractivity from "./interactivity_tweaker.js";
 import { startTimeCounter } from "./time-counter.js";
 import { updateStatusMessage } from "./messages-tweaker.js";
 import { mouseAndTouchAction } from "./mouse-and-keyboard-handlers.js";
 
-export default function togglePopupDialog(popupDialog, options, closingXElement)
+export default function togglePopupDialog(popupDialog, closingXElement)
 {
     const NON_INTERACTIVE = "non-interactive";
     let sourceType = options.clickSource.popup;
 
-    mouseAndTouchAction(closingXElement, options, closePopupDialog, sourceType);
+    mouseAndTouchAction(closingXElement, closePopupDialog, sourceType);
 
     const bodyElementStyle = bodyElement.style;
     const closingXElementClasses = closingXElement.classList;
@@ -42,7 +42,7 @@ export default function togglePopupDialog(popupDialog, options, closingXElement)
         {
             if(gameStats.timeIsRunning)
             {
-                updateStatusMessage("RESUME", options);
+                updateStatusMessage("RESUME");
             }
 
             dialogOptions.active = false;
@@ -53,7 +53,7 @@ export default function togglePopupDialog(popupDialog, options, closingXElement)
     });
 }
 
-const closePopupDialog = (popupDialog, options) =>
+const closePopupDialog = (popupDialog) =>
 {
     const dialogClasses = popupDialog.classList;
     let positionMiddleOrBelow = parseInt(contentElement.offsetHeight / 2) >= popupDialog.offsetTop - popupDialog.clientTop;
@@ -70,7 +70,7 @@ const closePopupDialog = (popupDialog, options) =>
 
             if(gameStats.setTimer !== 0)
             {
-                timer.ID = startTimeCounter(options);
+                timer.ID = startTimeCounter();
             }
         }
         else if(options.startTitle.text === "RESUME")

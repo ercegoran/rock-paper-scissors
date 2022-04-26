@@ -3,10 +3,10 @@ import
     contentElement, playerScoreElement, computerScoreElement,
     scoreMessageElement, scoreMessageHelpElement
 } from "./html-elements.js";
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 import toggleInteractivity from "./interactivity_tweaker.js";
 
-function updateStatusMessage(status, options)
+function updateStatusMessage(status)
 {
     let currentSet = gameStats.setCounter;
     let numberSuffix = currentSet === 1 ? "st" : currentSet === 2 ? "nd" : currentSet === 3 ? "rd" : "th";
@@ -40,7 +40,7 @@ function updateStatusMessage(status, options)
     }
 }
 
-function setAndGamePopupMessage(options)
+function setAndGamePopupMessage()
 {
     let countOpenClose = 1;
     let playerPoints = gameStats.playerScore;

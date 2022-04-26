@@ -3,7 +3,7 @@ import
     playerScoreElement, computerScoreElement, scoreMessageElement, choiceElements,
     rockElement, paperElement, scissorsElement
 } from "./html-elements.js";
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 import { timerReachedZero } from "./time-counter.js";
 import { mouseAndTouchAction } from "./mouse-and-keyboard-handlers.js";
 
@@ -15,17 +15,17 @@ const LOSER_GLOW = "rgba(255, 0, 0, 0.7)";
  * on game elements.
  * @param {object} score - keeping track of score in each set
  */
-export default function defineGameElementsBehavior(options)
+export default function defineGameElementsBehavior()
 {
     let sourceType = options.clickSource.gameplay;
 
     choiceElements.forEach(element => 
     {
-        mouseAndTouchAction(element, options, gameplayElementClicked, sourceType);
+        mouseAndTouchAction(element, gameplayElementClicked, sourceType);
     })
 }
 
-const gameplayElementClicked = (event, options) =>
+const gameplayElementClicked = (event) =>
 {
     let computerChoice = getComputerChoice();
     let playerChoice = event.target;
@@ -39,11 +39,11 @@ const gameplayElementClicked = (event, options) =>
         (playerChoice === paperElement && computerChoice === rockElement) ||
         (playerChoice === scissorsElement && computerChoice === paperElement))
     {
-        playerWon(playerChoice, computerChoice, options);
+        playerWon(playerChoice, computerChoice);
     }
     else
     {
-        playerLost(playerChoice, computerChoice, options);
+        playerLost(playerChoice, computerChoice);
     }
 }
 
@@ -82,7 +82,7 @@ const drawResult = (playerChoice, computerChoice) =>
  * @param {string} playerChoice - players choice
  * @param {string} computerChoice - computers choice
  */
-const playerWon = (playerChoice, computerChoice, options) =>
+const playerWon = (playerChoice, computerChoice) =>
 {
     gameStats.playerScore++;
     playerScoreElement.innerText = gameStats.playerScore;
@@ -93,7 +93,7 @@ const playerWon = (playerChoice, computerChoice, options) =>
     {
         setTimeout(() =>
         {
-            timerReachedZero(setTimer, options);
+            timerReachedZero(setTimer);
         }, options.clickSource.clickTimeout);
     }
     
@@ -126,7 +126,7 @@ const playerWon = (playerChoice, computerChoice, options) =>
  * @param {string} playerChoice - players choice
  * @param {string} computerChoice - computers choice
  */
-const playerLost = (playerChoice, computerChoice, options) =>
+const playerLost = (playerChoice, computerChoice) =>
 {
     gameStats.computerScore++;
     computerScoreElement.innerText = gameStats.computerScore;
@@ -137,7 +137,7 @@ const playerLost = (playerChoice, computerChoice, options) =>
     {
         setTimeout(() =>
         {
-            timerReachedZero(setTimer, options);
+            timerReachedZero(setTimer);
         }, options.clickSource.clickTimeout);
     }
     

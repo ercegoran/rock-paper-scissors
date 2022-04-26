@@ -3,11 +3,11 @@ import
     startButtonElement, counterWrapperElement, counterElement, leftBarElement,
     rightBarElement, timeBarElement, buttonSectionHrElement
 } from "./html-elements.js";
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 import { resultTableSetAndStyleUpdate } from "./popup-dialog.js";
 import { setAndGamePopupMessage } from "./messages-tweaker.js";
 
-function startTimeCounter(options)
+function startTimeCounter()
 {
     let timePoint = gameStats.setTimer;
     let timer = options.timer;
@@ -44,14 +44,14 @@ function startTimeCounter(options)
         {
             timer.callCount = 0;
             gameStats.timeIsRunning = false;
-            timerReachedZero(currentTime, options);
+            timerReachedZero(currentTime);
         }
     }, 1000);
 
     return interval;
 }
 
-function timerReachedZero(currentTime, options)
+function timerReachedZero(currentTime)
 {
     let playerPoints = gameStats.playerScore;
     let computerPoints = gameStats.computerScore;
@@ -78,11 +78,11 @@ function timerReachedZero(currentTime, options)
         }
     }
 
-    setAndGamePopupMessage(options);
-    stopTimeCounter(currentTime, options);
+    setAndGamePopupMessage();
+    stopTimeCounter(currentTime);
 }
 
-function stopTimeCounter(currentTime, options)
+function stopTimeCounter(currentTime)
 {
     gameStats.timeIsRunning = false;
     const timer = options.timer;

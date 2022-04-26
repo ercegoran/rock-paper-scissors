@@ -1,8 +1,8 @@
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 import dragPopupDialog from "./popup-dialog-dragging.js";
 import togglePopupDialog from "./toggle-popup-dialog.js";
 
-function getPopupDialog(dialogType, options)
+function getPopupDialog(dialogType)
 {
     let clicks = dialogType.clickAmmount;
     let dialogID = dialogType.ID;
@@ -23,7 +23,7 @@ function getPopupDialog(dialogType, options)
         popupDialog.appendChild(logo);
         popupDialog.appendChild(closingX);
 
-        togglePopupDialog(popupDialog, options, closingX);
+        togglePopupDialog(popupDialog, closingX);
         dragPopupDialog(popupDialog);
     
         return popupDialog;

@@ -4,7 +4,7 @@ import
     startButtonElement, resetButtonElement, scoreTableButtonElement,
     helpButtonElement, aboutButtonElement, choicePanelElement
 } from "./html-elements.js";
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 import { startTimeCounter, stopTimeCounter } from "./time-counter.js";
 import { getPopupDialog, resultTableSetAndStyleUpdate } from "./popup-dialog.js";
 import { updateStatusMessage } from "./messages-tweaker.js";
@@ -21,22 +21,22 @@ const RESUME = "RESUME";
  * of a timer.
  * @param {object} score - keeping track of score in each set
  */
-export default function defineButtonBehavior(options)
+export default function defineButtonBehavior()
 {
     let sourceType = options.clickSource.buttons;
     
     commandButtonsElement.forEach(button =>
     {
-        mouseAndTouchAction(button, options, buttonClicked, sourceType);
+        mouseAndTouchAction(button, buttonClicked, sourceType);
     });
 
     infoButtonsElement.forEach(button =>
     {
-        mouseAndTouchAction(button, options, buttonClicked, sourceType);
+        mouseAndTouchAction(button, buttonClicked, sourceType);
     });
 }
 
-const buttonClicked = (e, options, buttonType) =>
+const buttonClicked = (e, buttonType) =>
 {
     const clickedObject = e.target;
     let currentTime = gameStats.setTimer;
@@ -54,8 +54,8 @@ const buttonClicked = (e, options, buttonType) =>
             setTimeout(() =>
             {
                 setStartButtonStyle(startButtonTitle);
-                setGameState(currentTime, options);
-                updateStatusMessage(startButtonTitle.text, options);
+                setGameState(currentTime);
+                updateStatusMessage(startButtonTitle.text);
             }, clickTimeout);
         }
     }
@@ -66,8 +66,8 @@ const buttonClicked = (e, options, buttonType) =>
         
         if(gameStats.timeIsRunning)
         {
-            stopTimeCounter(currentTime, options);
-            updateStatusMessage(PAUSE, options); 
+            stopTimeCounter(currentTime);
+            updateStatusMessage(PAUSE); 
         }
 
         let popupHide = "hide-popup-dialog";
@@ -76,7 +76,7 @@ const buttonClicked = (e, options, buttonType) =>
             clickedObject === helpButtonElement ? "helpDialog" : "aboutDialog";
         const dialogType = options.popupDialog[dialogName];
         
-        const popupDialog = getPopupDialogSection(options, dialogType);
+        const popupDialog = getPopupDialogSection(dialogType);
         popupDialog.style.left = "50%";
         popupDialog.style.top = "50%";
         const popupDialogClasses = popupDialog.classList;
@@ -130,7 +130,7 @@ const setStartButtonStyle = (startButtonTitle) =>
     }
 }
 
-const setGameState = (currentTime, options) =>
+const setGameState = (currentTime) =>
 {
     let nonInteractive = "non-interactive";
     const resetButtonClasses = resetButtonElement.classList;
@@ -163,17 +163,17 @@ const setGameState = (currentTime, options) =>
             computer: 0
         };
 
-        timer.ID = startTimeCounter(options);
+        timer.ID = startTimeCounter();
     }
     else if(startButtonText === RESUME)
     {
         choicePanelInteractivityChanger(RESUME, nonInteractive);
-        timer.ID = startTimeCounter(options);
+        timer.ID = startTimeCounter();
     }
     else if(startButtonText === PAUSE)
     {
         choicePanelInteractivityChanger(PAUSE, nonInteractive);
-        stopTimeCounter(currentTime, options);
+        stopTimeCounter(currentTime);
     }
 }
 
@@ -197,9 +197,9 @@ const choicePanelInteractivityChanger = (startButtonText, nonInteractive) =>
     }
 }
 
-const getPopupDialogSection = (options, dialogType) =>
+const getPopupDialogSection = (dialogType) =>
 {
-    const popupDialogSection = contentElement.appendChild(getPopupDialog(dialogType, options));
+    const popupDialogSection = contentElement.appendChild(getPopupDialog(dialogType));
     
     if (dialogType.name === "table")
     {

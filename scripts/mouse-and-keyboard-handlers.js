@@ -1,6 +1,6 @@
-import { gameStats } from "./index.js";
+import { gameStats, options } from "./index.js";
 
-function mouseAndTouchAction(element, options, action, sourceType)
+function mouseAndTouchAction(element, action, sourceType)
 {
     const triggerEvents = ["mousedown", "touchstart"];
     const clickSource = options.clickSource;
@@ -17,7 +17,7 @@ function mouseAndTouchAction(element, options, action, sourceType)
 
             if(mouseLeftOrTouch && clickSource.eventCalled === 0 && clickSource.clickCount <= 1)
             {
-                const actionArgs = [options];
+                const actionArgs = [];
 
                 if(e.type === "touchstart")
                 {
@@ -101,7 +101,7 @@ function mouseAndTouchAction(element, options, action, sourceType)
     {
         if(clickSource.eventCalled === 0 && clickSource.clickCount === 0)
         {
-            const actionArgs = [options];
+            const actionArgs = [];
 
             if(sourceName === "buttons")
             {
@@ -140,13 +140,13 @@ const buttonActionArguments = (element, actionArgs, sourceType) =>
     });
 }
 
-function keyboardClick(entryList, options)
+function keyboardClick(entryList)
 {
     document.addEventListener("keydown", (e) =>
     {
         if(entryList.clickCounter < 1)
         {
-            keyAction(e, entryList, options);
+            keyAction(e, entryList);
         }
     });
 
@@ -159,7 +159,7 @@ function keyboardClick(entryList, options)
     });
 }
 
-const keyAction = (e, entryList, options) =>
+const keyAction = (e, entryList) =>
 {
     const popupDialog = options.popupDialog;
     const closingX = entryList.popup.Escape;

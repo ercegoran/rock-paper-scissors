@@ -112,9 +112,9 @@ const keyboardEntries = (() =>
     
     }))();
 
-keyboardClick(keyboardEntries, options);
-defineButtonBehavior(options);
-defineGameElementsBehavior(options);
+keyboardClick(keyboardEntries);
+defineButtonBehavior();
+defineGameElementsBehavior();
 
 document.addEventListener('visibilitychange', () =>
 {
@@ -133,7 +133,7 @@ document.addEventListener('visibilitychange', () =>
         {
             if(startTitleText !== "PAUSE")
             {
-                stopTimeCounter(gameStats, timeCounter, options);
+                stopTimeCounter(timeCounter);
             }
         }
 
@@ -153,18 +153,18 @@ document.addEventListener('visibilitychange', () =>
         {
             if(startTitleText !== "PAUSE")
             {
-                options.timer.ID = startTimeCounter(gameStats, options);
+                options.timer.ID = startTimeCounter();
             }
         }
 
         if(endOfSetMessage.active)
         {
-            setAndGamePopupMessage(gameStats, options);
+            setAndGamePopupMessage();
         }
     }
 });
 
-export { gameStats }
+export { gameStats, options }
 
 // function justATest()
 // {
