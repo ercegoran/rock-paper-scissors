@@ -5,12 +5,12 @@ import { startTimeCounter } from "./time-counter.js";
 import { updateStatusMessage } from "./messages-tweaker.js";
 import { mouseAndTouchAction } from "./mouse-and-keyboard-handlers.js";
 
-export default function togglePopupDialog(popupDialog, gameStats, options, closingXElement)
+export default function togglePopupDialog(popupDialog, options, closingXElement)
 {
     const NON_INTERACTIVE = "non-interactive";
     let sourceType = options.clickSource.popup;
 
-    mouseAndTouchAction(closingXElement, gameStats, options, closePopupDialog, sourceType);
+    mouseAndTouchAction(closingXElement, options, closePopupDialog, sourceType);
 
     const bodyElementStyle = bodyElement.style;
     const closingXElementClasses = closingXElement.classList;
@@ -21,7 +21,7 @@ export default function togglePopupDialog(popupDialog, gameStats, options, closi
     {
         countOpenClose++;
         popupDialog.parentNode.style.perspective = "7em";
-        toggleInteractivity(e, gameStats, contentElement, popupDialog, countOpenClose);
+        toggleInteractivity(e, contentElement, popupDialog, countOpenClose);
     });
 
     popupDialog.addEventListener("animationend", () =>
@@ -42,7 +42,7 @@ export default function togglePopupDialog(popupDialog, gameStats, options, closi
         {
             if(gameStats.timeIsRunning)
             {
-                updateStatusMessage(gameStats, "RESUME", options);
+                updateStatusMessage("RESUME", options);
             }
 
             dialogOptions.active = false;
@@ -53,7 +53,7 @@ export default function togglePopupDialog(popupDialog, gameStats, options, closi
     });
 }
 
-const closePopupDialog = (popupDialog, gameStats, options) =>
+const closePopupDialog = (popupDialog, options) =>
 {
     const dialogClasses = popupDialog.classList;
     let positionMiddleOrBelow = parseInt(contentElement.offsetHeight / 2) >= popupDialog.offsetTop - popupDialog.clientTop;
@@ -70,7 +70,7 @@ const closePopupDialog = (popupDialog, gameStats, options) =>
 
             if(gameStats.setTimer !== 0)
             {
-                timer.ID = startTimeCounter(gameStats, options);
+                timer.ID = startTimeCounter(options);
             }
         }
         else if(options.startTitle.text === "RESUME")

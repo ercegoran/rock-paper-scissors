@@ -113,8 +113,8 @@ const keyboardEntries = (() =>
     }))();
 
 keyboardClick(keyboardEntries, options);
-defineButtonBehavior(gameStats, options);
-defineGameElementsBehavior(gameStats, options);
+defineButtonBehavior(options);
+defineGameElementsBehavior(options);
 
 document.addEventListener('visibilitychange', () =>
 {

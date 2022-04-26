@@ -2,7 +2,7 @@ import { gameStats } from "./index.js";
 import dragPopupDialog from "./popup-dialog-dragging.js";
 import togglePopupDialog from "./toggle-popup-dialog.js";
 
-function getPopupDialog(gameStats, dialogType, options)
+function getPopupDialog(dialogType, options)
 {
     let clicks = dialogType.clickAmmount;
     let dialogID = dialogType.ID;
@@ -23,7 +23,7 @@ function getPopupDialog(gameStats, dialogType, options)
         popupDialog.appendChild(logo);
         popupDialog.appendChild(closingX);
 
-        togglePopupDialog(popupDialog, gameStats, options, closingX);
+        togglePopupDialog(popupDialog, options, closingX);
         dragPopupDialog(popupDialog);
     
         return popupDialog;
@@ -151,7 +151,7 @@ const logoDiv = () =>
     return logoDiv;
 }
 
-function resultTableSetAndStyleUpdate(gameStats, setCount)
+function resultTableSetAndStyleUpdate(setCount)
 {
     document.getElementById("player-set-" + setCount).innerText = gameStats["set" + setCount].player;
     document.getElementById("computer-set-" + setCount).innerText = gameStats["set" + setCount].computer;

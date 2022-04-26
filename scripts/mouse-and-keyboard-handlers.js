@@ -1,6 +1,6 @@
 import { gameStats } from "./index.js";
 
-function mouseAndTouchAction(element, gameStats, options, action, sourceType)
+function mouseAndTouchAction(element, options, action, sourceType)
 {
     const triggerEvents = ["mousedown", "touchstart"];
     const clickSource = options.clickSource;
@@ -17,7 +17,7 @@ function mouseAndTouchAction(element, gameStats, options, action, sourceType)
 
             if(mouseLeftOrTouch && clickSource.eventCalled === 0 && clickSource.clickCount <= 1)
             {
-                const actionArgs = [gameStats, options];
+                const actionArgs = [options];
 
                 if(e.type === "touchstart")
                 {
@@ -101,7 +101,7 @@ function mouseAndTouchAction(element, gameStats, options, action, sourceType)
     {
         if(clickSource.eventCalled === 0 && clickSource.clickCount === 0)
         {
-            const actionArgs = [gameStats, options];
+            const actionArgs = [options];
 
             if(sourceName === "buttons")
             {

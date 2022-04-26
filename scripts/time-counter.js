@@ -7,7 +7,7 @@ import { gameStats } from "./index.js";
 import { resultTableSetAndStyleUpdate } from "./popup-dialog.js";
 import { setAndGamePopupMessage } from "./messages-tweaker.js";
 
-function startTimeCounter(gameStats, options)
+function startTimeCounter(options)
 {
     let timePoint = gameStats.setTimer;
     let timer = options.timer;
@@ -44,14 +44,14 @@ function startTimeCounter(gameStats, options)
         {
             timer.callCount = 0;
             gameStats.timeIsRunning = false;
-            timerReachedZero(gameStats, currentTime, options);
+            timerReachedZero(currentTime, options);
         }
     }, 1000);
 
     return interval;
 }
 
-function timerReachedZero(gameStats, currentTime, options)
+function timerReachedZero(currentTime, options)
 {
     let playerPoints = gameStats.playerScore;
     let computerPoints = gameStats.computerScore;
@@ -74,15 +74,15 @@ function timerReachedZero(gameStats, currentTime, options)
 
         if(options.popupDialog.resultTable.clickAmmount > 0)
         {
-            resultTableSetAndStyleUpdate(gameStats, setCount);
+            resultTableSetAndStyleUpdate(setCount);
         }
     }
 
-    setAndGamePopupMessage(gameStats, options);
-    stopTimeCounter(gameStats, currentTime, options);
+    setAndGamePopupMessage(options);
+    stopTimeCounter(currentTime, options);
 }
 
-function stopTimeCounter(gameStats, currentTime, options)
+function stopTimeCounter(currentTime, options)
 {
     gameStats.timeIsRunning = false;
     const timer = options.timer;

@@ -6,7 +6,7 @@ import
 import { gameStats } from "./index.js";
 import toggleInteractivity from "./interactivity_tweaker.js";
 
-function updateStatusMessage(gameStats, status, options)
+function updateStatusMessage(status, options)
 {
     let currentSet = gameStats.setCounter;
     let numberSuffix = currentSet === 1 ? "st" : currentSet === 2 ? "nd" : currentSet === 3 ? "rd" : "th";
@@ -40,7 +40,7 @@ function updateStatusMessage(gameStats, status, options)
     }
 }
 
-function setAndGamePopupMessage(gameStats, options)
+function setAndGamePopupMessage(options)
 {
     let countOpenClose = 1;
     let playerPoints = gameStats.playerScore;
@@ -69,7 +69,7 @@ function setAndGamePopupMessage(gameStats, options)
             text = createMessage(0, "draw");
         }
 
-        const messageWrapper = popupMessage.messageObject = definePopupMessage(gameStats, text, color);
+        const messageWrapper = popupMessage.messageObject = definePopupMessage(text, color);
 
         setTimeout(() => 
         {
@@ -80,7 +80,7 @@ function setAndGamePopupMessage(gameStats, options)
                 popupMessage.active = true;
             });
 
-            toggleInteractivity("", gameStats, contentElement, messageWrapper, countOpenClose);
+            toggleInteractivity("", contentElement, messageWrapper, countOpenClose);
         });
     }
 
@@ -89,7 +89,7 @@ function setAndGamePopupMessage(gameStats, options)
         countOpenClose++;
         const messageWrapper = popupMessage.messageObject;
         messageWrapper.style.transform = "translate(-50%, -50%) rotate(0) scale(0)";
-        toggleInteractivity("", gameStats, contentElement, messageWrapper, countOpenClose);
+        toggleInteractivity("", contentElement, messageWrapper, countOpenClose);
         countOpenClose = 0;
     }, textTimeoutStyle.duration);
 
@@ -198,7 +198,7 @@ const getMessage = (outcome) =>
     return statements[outcome];
 }
 
-const definePopupMessage = (gameStats, text, color) =>
+const definePopupMessage = (text, color) =>
 {
     let id = "popup-message";
     const messageWrapper = gameStats.setCounter > 1 ?

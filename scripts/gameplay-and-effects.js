@@ -15,17 +15,17 @@ const LOSER_GLOW = "rgba(255, 0, 0, 0.7)";
  * on game elements.
  * @param {object} score - keeping track of score in each set
  */
-export default function defineGameElementsBehavior(gameStats, options)
+export default function defineGameElementsBehavior(options)
 {
     let sourceType = options.clickSource.gameplay;
 
     choiceElements.forEach(element => 
     {
-        mouseAndTouchAction(element, gameStats, options, gameplayElementClicked, sourceType);
+        mouseAndTouchAction(element, options, gameplayElementClicked, sourceType);
     })
 }
 
-const gameplayElementClicked = (event, gameStats, options) =>
+const gameplayElementClicked = (event, options) =>
 {
     let computerChoice = getComputerChoice();
     let playerChoice = event.target;
@@ -33,17 +33,17 @@ const gameplayElementClicked = (event, gameStats, options) =>
 
     if(playerChoice === computerChoice)
     {
-        drawResult(playerChoice, computerChoice, gameStats);
+        drawResult(playerChoice, computerChoice);
     }
     else if((playerChoice === rockElement && computerChoice === scissorsElement) ||
         (playerChoice === paperElement && computerChoice === rockElement) ||
         (playerChoice === scissorsElement && computerChoice === paperElement))
     {
-        playerWon(playerChoice, computerChoice, gameStats, options);
+        playerWon(playerChoice, computerChoice, options);
     }
     else
     {
-        playerLost(playerChoice, computerChoice, gameStats, options);
+        playerLost(playerChoice, computerChoice, options);
     }
 }
 
@@ -66,11 +66,11 @@ const getComputerChoice = () =>
  * @param {string} playerChoice - players choice
  * @param {string} computerChoice - computers choice
  */
-const drawResult = (playerChoice, computerChoice, gameStats) =>
+const drawResult = (playerChoice, computerChoice) =>
 {
     const drawGlow = "rgba(128, 128, 128, 0.7)";
     updateResultMessage(playerChoice.id, computerChoice.id, " is same as ", "DRAW");
-    inGameEffects(playerChoice, computerChoice, drawGlow, drawGlow, gameStats);
+    inGameEffects(playerChoice, computerChoice, drawGlow, drawGlow);
 }
 
 /**
@@ -82,7 +82,7 @@ const drawResult = (playerChoice, computerChoice, gameStats) =>
  * @param {string} playerChoice - players choice
  * @param {string} computerChoice - computers choice
  */
-const playerWon = (playerChoice, computerChoice, gameStats, options) =>
+const playerWon = (playerChoice, computerChoice, options) =>
 {
     gameStats.playerScore++;
     playerScoreElement.innerText = gameStats.playerScore;
@@ -93,7 +93,7 @@ const playerWon = (playerChoice, computerChoice, gameStats, options) =>
     {
         setTimeout(() =>
         {
-            timerReachedZero(gameStats, setTimer, options);
+            timerReachedZero(setTimer, options);
         }, options.clickSource.clickTimeout);
     }
     
@@ -114,7 +114,7 @@ const playerWon = (playerChoice, computerChoice, gameStats, options) =>
     }
 
     updateResultMessage(playerChoice.id, computerChoice.id, scoreDescription, "victory");
-    inGameEffects(playerChoice, computerChoice, WINNER_GLOW, LOSER_GLOW, gameStats);
+    inGameEffects(playerChoice, computerChoice, WINNER_GLOW, LOSER_GLOW);
 }
 
 /**
@@ -126,7 +126,7 @@ const playerWon = (playerChoice, computerChoice, gameStats, options) =>
  * @param {string} playerChoice - players choice
  * @param {string} computerChoice - computers choice
  */
-const playerLost = (playerChoice, computerChoice, gameStats, options) =>
+const playerLost = (playerChoice, computerChoice, options) =>
 {
     gameStats.computerScore++;
     computerScoreElement.innerText = gameStats.computerScore;
@@ -137,7 +137,7 @@ const playerLost = (playerChoice, computerChoice, gameStats, options) =>
     {
         setTimeout(() =>
         {
-            timerReachedZero(gameStats, setTimer, options);
+            timerReachedZero(setTimer, options);
         }, options.clickSource.clickTimeout);
     }
     
@@ -158,7 +158,7 @@ const playerLost = (playerChoice, computerChoice, gameStats, options) =>
     }
     
     updateResultMessage(playerChoice.id, computerChoice.id, scoreDescription, "loss");
-    inGameEffects(playerChoice, computerChoice, LOSER_GLOW, WINNER_GLOW, gameStats);
+    inGameEffects(playerChoice, computerChoice, LOSER_GLOW, WINNER_GLOW);
 }
 
 /**
@@ -207,7 +207,7 @@ const updateResultMessage = (playerChoice, computerChoice, scoreDescription, sco
  * @param {string} glow1 - players score glow
  * @param {string} glow2 - computers score glow
  */
-const inGameEffects = (choice1, choice2, glow1, glow2, gameStats) =>
+const inGameEffects = (choice1, choice2, glow1, glow2) =>
 {
     let sameResult = choice1 === choice2;
     let currentTime = gameStats.setTimer;
