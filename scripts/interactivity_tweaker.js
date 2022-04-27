@@ -1,4 +1,6 @@
-export default function toggleInteractivity(action, gameStats, elementGroup, popupObject, countOpenClose)
+import { gameStats } from "./index.js";
+
+export default function toggleInteractivity(action, elementGroup, popupObject, countOpenClose)
 {
     const popupObjectStyle = window.getComputedStyle(popupObject);
     let actionType = action instanceof Event ? action.type : action;
@@ -6,10 +8,10 @@ export default function toggleInteractivity(action, gameStats, elementGroup, pop
 
     const elements = elementGroup.children.length > 0 ? elementGroup.children : elementGroup;
     
-    iterateThroughElements(elements, gameStats, popupObject, animationProperties);
+    iterateThroughElements(elements, popupObject, animationProperties);
 }
 
-const iterateThroughElements = (elements, gameStats, popupObject, animationProperties) =>
+const iterateThroughElements = (elements, popupObject, animationProperties) =>
 {
     let isOpen = animationProperties.isOpen;
     let duration = animationProperties.duration;
@@ -37,7 +39,7 @@ const iterateThroughElements = (elements, gameStats, popupObject, animationPrope
             {
                 if(childrenCount > 0)
                 {
-                    iterateThroughElements(element.children, gameStats, popupObject, animationProperties);
+                    iterateThroughElements(element.children, popupObject, animationProperties);
                 }
             }
         
