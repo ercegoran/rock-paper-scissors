@@ -1,4 +1,4 @@
-import { gameStats, options } from "./index.js";
+import { options, keyboardEntries } from "./index.js";
 
 function mouseAndTouchAction(element, action, sourceType)
 {
@@ -140,49 +140,60 @@ const buttonActionArguments = (element, actionArgs, sourceType) =>
     });
 }
 
-function keyboardClick(entryList)
+function keyboardClick()
 {
     document.addEventListener("keydown", (e) =>
     {
-        if(entryList.clickCounter < 1)
+        if(keyboardEntries.clickCounter < 1)
         {
-            keyAction(e, entryList);
+            keyAction(e);
         }
     });
 
     document.addEventListener("keyup", () => 
     {
-        if(entryList.clickCounter > 0)
+        if(keyboardEntries.clickCounter > 0)
         {
-            entryList.clickCounter = 0;
+            keyboardEntries.clickCounter = 0;
         }
     });
 }
 
-const keyAction = (e, entryList) =>
+const keyAction = (e) =>
 {
     const popupDialog = options.popupDialog;
-    const closingX = entryList.popup.Escape;
+    const closing = keyboardEntries.popup.Escape;
+    let popupDialogActive = popupDialog.active;
+    let popupDialogID;
 
-    for(let entry in entryList)
+    if(popupDialogActive)
     {
-        const entries = entryList[entry];
+        popupDialogID = popupDialog.currentDialogID;
+        closing.activates = popupDialogID;
+    }
+    
+    for(let entry in keyboardEntries)
+    {
+        const entries = keyboardEntries[entry];
         const keyCode = e.code;
         const clickedEntry = entries[keyCode];
         
         if(clickedEntry)
         {
             let entryLength = Object.keys(clickedEntry).length;
-            let hasActivatedPopupWindow = popupDialog.active && clickedEntry.activates === popupDialog.currentDialogID;
-            const clickedObject = entryLength > 0 ? hasActivatedPopupWindow ?
-                closingX : clickedEntry.target : clickedEntry;
-            let objectActive = !clickedObject.classList.contains("non-interactive");
-            let clickStyle = clickedObject === closingX ? entryList.popup.clickClass : entries.clickClass;
+            
+            let hasActivatedPopupWindow = popupDialogActive && popupDialogID && clickedEntry.activates === popupDialogID;
+            const closingX = hasActivatedPopupWindow ? closing[popupDialogID].target : "";
+            const regular = entryLength > 0 ? clickedEntry.target : clickedEntry;
+            const clickedObject = hasActivatedPopupWindow ? closingX : regular;
+                        
+            let objectActive = clickedObject && !clickedObject.classList.contains("non-interactive");
+            let clickStyle = clickedObject === closingX ? keyboardEntries.popup.clickClass : entries.clickClass;
             
             if(objectActive)
             {
                 elementStyleTogglerAndAction(clickedObject, clickStyle);
-                entryList.clickCounter++;
+                keyboardEntries.clickCounter++;
             }
         }
     }

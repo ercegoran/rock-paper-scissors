@@ -1,4 +1,4 @@
-import { gameStats, options } from "./index.js";
+import { gameStats, keyboardEntries } from "./index.js";
 import dragPopupDialog from "./popup-dialog-dragging.js";
 import togglePopupDialog from "./toggle-popup-dialog.js";
 
@@ -15,7 +15,8 @@ function getPopupDialog(dialogType)
         const divider = document.createElement("hr");
         const logo = logoDiv();
         const closingX = closingXElement();
-    
+        keyboardEntries.popup.Escape[dialogID].target = closingX;
+
         popupDialog.id = dialogID;
     
         popupDialog.appendChild(mainElement);

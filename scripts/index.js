@@ -12,6 +12,9 @@ import { setAndGamePopupMessage } from "./messages-tweaker.js";
 const BUTTON_ACTIVE = "button-clicked";
 const CHOICE_ACTIVE = "gameplay-element-clicked";
 const CLOSINGX_ACTIVE = "closingX-clicked";
+const ABOUT_ID = "about-dialog-wrapper";
+const TABLE_ID = "result-table-wrapper";
+const HELP_ID = "help-dialog-wrapper";
 
 const gameStats = (() =>
     ({
@@ -46,19 +49,19 @@ const options = (() =>
             {
                 name: "table",
                 clickAmmount: 0,
-                ID: "result-table-wrapper"
+                ID: TABLE_ID
             },
             helpDialog:
             {
                 name: "help",
                 clickAmmount: 0,
-                ID: "help-dialog-wrapper"
+                ID: HELP_ID
             },
             aboutDialog:
             {
                 name: "about",
                 clickAmmount: 0,
-                ID: "about-dialog-wrapper"
+                ID: ABOUT_ID
             }
         },
         clickSource:
@@ -91,9 +94,24 @@ const keyboardEntries = (() =>
         {
             Enter: startButtonElement,
             Backspace: resetButtonElement,
-            KeyH: { target: helpButtonElement, activates: "help-dialog-wrapper" },
-            KeyT: { target: scoreTableButtonElement, activates: "result-table-wrapper" },
-            KeyA: { target: aboutButtonElement, activates: "about-dialog-wrapper" },
+            KeyH:
+            {
+                name: "help",
+                target: helpButtonElement,
+                activates: HELP_ID
+            },
+            KeyT:
+            {
+                name: "table",
+                target: scoreTableButtonElement,
+                activates: TABLE_ID
+            },
+            KeyA:
+            {
+                name: "about",
+                target: aboutButtonElement,
+                activates: ABOUT_ID
+            },
             clickClass: BUTTON_ACTIVE
         },
         gameplay:
@@ -105,14 +123,19 @@ const keyboardEntries = (() =>
         },
         popup:
         {
-            Escape: "",
+            Escape:
+            {
+                activates: "",
+                [ABOUT_ID]: { target: "" },
+                [TABLE_ID]: { target: "" },
+                [HELP_ID]: { target: "" }
+            },
             clickClass: CLOSINGX_ACTIVE
         },
         clickCounter: 0
-    
     }))();
 
-keyboardClick(keyboardEntries);
+keyboardClick();
 defineButtonBehavior();
 defineGameElementsBehavior();
 
@@ -164,7 +187,7 @@ document.addEventListener('visibilitychange', () =>
     }
 });
 
-export { gameStats, options }
+export { gameStats, options, keyboardEntries }
 
 // function justATest()
 // {
